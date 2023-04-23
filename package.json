@@ -1,0 +1,88 @@
+{
+    "name": "electron-template",
+    "author": "Cbrra",
+    "description": "My Electron app!",
+    "version": "0.1.0",
+    "private": true,
+    "homepage": "./",
+    "main": "public/electron.js",
+    "dependencies": {
+        "@testing-library/jest-dom": "^5.16.5",
+        "@testing-library/react": "^13.4.0",
+        "@testing-library/user-event": "^13.5.0",
+        "electron-is-dev": "^2.0.0",
+        "electron-squirrel-startup": "^1.0.0"
+    },
+    "scripts": {
+        "react:start": "react-scripts start",
+        "react:build": "react-scripts build",
+        "react:test": "react-scripts test",
+        "react:eject": "react-scripts eject",
+        "dev": "concurrently -k \"npm run react:start\" \"npm run electron\"",
+        "electron": "wait-on http://127.0.0.1:3000 && electron public/electron.js",
+        "forge:start": "electron-forge start",
+        "forge:package": "electron-forge package",
+        "forge:make": "electron-forge make"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@electron-forge/cli": "^6.1.0",
+        "@electron-forge/maker-deb": "^6.1.0",
+        "@electron-forge/maker-rpm": "^6.1.0",
+        "@electron-forge/maker-squirrel": "^6.1.0",
+        "@electron-forge/maker-zip": "^6.1.0",
+        "concurrently": "^8.0.1",
+        "electron": "^24.0.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-router-dom": "^6.10.0",
+        "react-scripts": "^5.0.1",
+        "sass": "^1.61.0",
+        "wait-on": "^7.0.1",
+        "web-vitals": "^3.3.1"
+    },
+    "config": {
+        "forge": {
+            "packagerConfig": {},
+            "makers": [
+                {
+                    "name": "@electron-forge/maker-squirrel",
+                    "config": {
+                        "name": "electron_quick_start"
+                    }
+                },
+                {
+                    "name": "@electron-forge/maker-zip",
+                    "platforms": [
+                        "darwin"
+                    ]
+                },
+                {
+                    "name": "@electron-forge/maker-deb",
+                    "config": {}
+                },
+                {
+                    "name": "@electron-forge/maker-rpm",
+                    "config": {}
+                }
+            ]
+        }
+    }
+}
