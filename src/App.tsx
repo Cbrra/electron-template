@@ -1,29 +1,42 @@
-import "./styles/App.scss";
-import { useState, useEffect } from "react";
-import { HashRouter, Route, Routes } from "react-router-dom";
-import type { Data } from "./types/Data";
-import { dataContext } from "./components/contexts/DataContext";
-import Home from "./pages/Home";
-import NotHome from "./pages/NotHome";
+import { useEffect } from "react";
+import { Button } from "./components/ui/button";
+import { useToast } from "./components/hooks/use-toast";
 
-const App = () => {
-    const [data, setData] = useState<Data | null>(null);
+export default function App() {
+    const { toast } = useToast();
+
+    const onClick = () => {
+        window.ipcRenderer.invoke("custom-event");
+    };
 
     useEffect(() => {
-        window.electronAPI.getData()
-            .then(res => setData(res));
+        type ElectronListener = Parameters<Electron.IpcRenderer["on"]>[1];
+
+        const listener: ElectronListener = (_event, message) => {
+            toast({
+                title: "Message",
+                description: message,
+            });
+        };
+
+        window.ipcRenderer.on("my-event", listener);
+
+        return () => {
+            window.ipcRenderer.off("my-event", listener);
+        };
     }, []);
 
     return (
-        <dataContext.Provider value={data}>
-            <HashRouter>
-                <Routes>
-                    <Route path="*" Component={Home} />
-                    <Route path="/not-home" Component={NotHome} />
-                </Routes>
-            </HashRouter>
-        </dataContext.Provider>
-    );
-};
+        <main className="flex place-items-center min-h-screen w-screen">
+            <div className="rounded-lg mx-auto flex flex-col space-y-6">
+                <h1 className="font-extrabold text-2xl text-center">Electron Template</h1>
 
-export default App;
+                <img width={150} className="mx-auto" src="/favicon.ico" />
+
+                <div className="mx-auto">
+                    <Button onClick={onClick}>Send message to backend</Button>
+                </div>
+            </div>
+        </main>
+    );
+}

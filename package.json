@@ -1,88 +1,57 @@
 {
     "name": "electron-template",
-    "author": "Cbrra",
-    "description": "My Electron app!",
-    "version": "0.1.0",
+    "version": "1.0.0",
+    "main": "dist-electron/main/index.js",
+    "description": "Electron application template",
+    "license": "MIT",
     "private": true,
-    "homepage": "./",
-    "main": "public/electron.js",
-    "dependencies": {
-        "@testing-library/jest-dom": "^5.16.5",
-        "@testing-library/react": "^13.4.0",
-        "@testing-library/user-event": "^13.5.0",
-        "electron-is-dev": "^2.0.0",
-        "electron-squirrel-startup": "^1.0.0"
+    "type": "module",
+    "debug": {
+        "env": {
+            "VITE_DEV_SERVER_URL": "http://127.0.0.1:7777/"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/cbrra/electron-template.git"
     },
     "scripts": {
-        "react:start": "react-scripts start",
-        "react:build": "react-scripts build",
-        "react:test": "react-scripts test",
-        "react:eject": "react-scripts eject",
-        "dev": "concurrently -k \"npm run react:start\" \"npm run electron\"",
-        "electron": "wait-on http://127.0.0.1:3000 && electron public/electron.js",
-        "forge:start": "electron-forge start",
-        "forge:package": "electron-forge package",
-        "forge:make": "electron-forge make"
-    },
-    "eslintConfig": {
-        "extends": [
-            "react-app",
-            "react-app/jest"
-        ]
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
+        "dev": "vite",
+        "build": "tsc && vite build && electron-builder",
+        "preview": "vite preview",
+        "pretest": "vite build --mode=test",
+        "test": "vitest run",
+        "format": "prettier --write \"**/*.{ts,tsx,html,css}\""
     },
     "devDependencies": {
-        "@electron-forge/cli": "^6.1.0",
-        "@electron-forge/maker-deb": "^6.1.0",
-        "@electron-forge/maker-rpm": "^6.1.0",
-        "@electron-forge/maker-squirrel": "^6.1.0",
-        "@electron-forge/maker-zip": "^6.1.0",
-        "concurrently": "^8.0.1",
-        "electron": "^24.0.0",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "react-router-dom": "^6.10.0",
-        "react-scripts": "^5.0.1",
-        "sass": "^1.61.0",
-        "wait-on": "^7.0.1",
-        "web-vitals": "^3.3.1"
+        "@types/react": "^18.3.12",
+        "@types/react-dom": "^18.3.1",
+        "@vitejs/plugin-react": "^4.3.3",
+        "autoprefixer": "^10.4.20",
+        "electron": "^33.2.0",
+        "electron-builder": "^24.13.3",
+        "postcss": "^8.4.49",
+        "postcss-import": "^16.1.0",
+        "prettier": "^3.4.2",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "tailwindcss": "^3.4.15",
+        "typescript": "^5.4.2",
+        "vite": "^5.4.11",
+        "vite-plugin-electron": "^0.29.0",
+        "vite-plugin-electron-renderer": "^0.14.6",
+        "vitest": "^2.1.5"
     },
-    "config": {
-        "forge": {
-            "packagerConfig": {},
-            "makers": [
-                {
-                    "name": "@electron-forge/maker-squirrel",
-                    "config": {
-                        "name": "electron_quick_start"
-                    }
-                },
-                {
-                    "name": "@electron-forge/maker-zip",
-                    "platforms": [
-                        "darwin"
-                    ]
-                },
-                {
-                    "name": "@electron-forge/maker-deb",
-                    "config": {}
-                },
-                {
-                    "name": "@electron-forge/maker-rpm",
-                    "config": {}
-                }
-            ]
-        }
+    "dependencies": {
+        "@radix-ui/react-dialog": "^1.1.6",
+        "@radix-ui/react-label": "^2.1.2",
+        "@radix-ui/react-slot": "^1.1.2",
+        "@radix-ui/react-toast": "^1.2.6",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
+        "lucide-react": "^0.474.0",
+        "tailwind-merge": "^3.0.1",
+        "tailwindcss-animate": "^1.0.7",
+        "undici": "^7.3.0"
     }
 }
