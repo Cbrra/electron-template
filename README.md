@@ -5,11 +5,12 @@ A template to quickly start a new application with Electron, TypeScript, React, 
 
 
 **Note:**
-While Electron is cool, I highly recommend checking out [Tauri](https://tauri.app). It's similar to Electron but offers a much smaller app size, faster startup, better performance, lower RAM usage (as it doesn't rely on Chromium or Node.js), enhanced security, and easy cross-platform packaging—including mobile.
+As an alternative to Electron, I recommend checking out [Tauri](https://tauri.app).
 
 ## Usage
 - `npm i` -> Download the dependencies
 - `npm run dev` -> Start the dev mode
+- `npm run lint` -> Lint with tsc
 - `npm run test` -> Test the code with Vitest
 - `npm run format` -> Format the code with Prettier
 - `npm run build` -> Build the app with electron-builder
